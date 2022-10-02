@@ -19,7 +19,7 @@ Learn more about contributing: [CONTRIBUTING.md](https://github.com/CFIA-NCFAD/n
   - [ ] If you've added a new tool - have you followed the pipeline conventions in the [contribution docs](https://github.com/CFIA-NCFAD/nf-flu/tree/master/.github/CONTRIBUTING.md)
   - [ ] If necessary, also make a PR on [the CFIA-NCFAD/nf-test-datasets repo](https://github.com/CFIA-NCFAD/nf-test-datasets/pull/new)
 - [ ] Make sure your code lints (`nf-core lint .`).
-- [ ] Ensure the test suite passes (`nextflow run . -profile test,docker`).
+- [ ] Ensure the test suite passes (`nextflow run . -profile test_illumina,docker`).
 - [ ] Usage Documentation in `docs/usage.md` is updated.
 - [ ] Output Documentation in `docs/output.md` is updated.
 - [ ] `CHANGELOG.md` is updated.
