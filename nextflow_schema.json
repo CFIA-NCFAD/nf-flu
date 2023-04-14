@@ -42,6 +42,10 @@
                 "input"
             ]
         },"nextclade_options": {
+            "title": "Nextclade options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Nextclade dataset options.",
             "properties": {
                 "with_nextclade": {
                     "type": "boolean",

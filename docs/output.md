@@ -151,6 +151,23 @@ The report contains 2 sheets:
 
 </details>
 
+### Nextclade
+<details markdown="1">
+<summary>Output files</summary>
+
+- `nextclade/sample_info/`
+  - Aligned sequences: `nextclade.aligned.fasta`
+  - Auspice Tree: `nextclade.auspice.json` (can be viewed: https://auspice.us/)
+  - Nextclade output csv: `nextclade.csv`
+  - Summary of alignment errors: `nextclade.errors.csv`
+  - Summary of alignment insertions: `nextclade.insertions.csv`
+  - JSON summary of information: `nextclade.json/nextclade.ndjson`
+  - Nextclade output tsv: `nextclade.tsv`
+
+
+</details>
+
+
 ### H/N Subtyping
 
 <details markdown="1">
