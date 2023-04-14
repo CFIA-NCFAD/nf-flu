@@ -25,6 +25,8 @@ include { CAT_CONSENSUS                                       } from '../modules
 include { SEQTK_SEQ                                           } from '../modules/local/seqtk_seq'
 include { CHECK_SAMPLE_SHEET                                  } from '../modules/local/check_sample_sheet'
 include { CHECK_REF_FASTA                                     } from '../modules/local/check_ref_fasta'
+include { NEXTCLADE_DATASETGET; NEXTCLADE_RUN } from '../modules/local/nextclade.nf'
+
 // using modified BLAST_MAKEBLASTDB from nf-core/modules to only move/publish BLAST DB files
 include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_NCBI         } from '../modules/local/blast_makeblastdb'
 include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_REFDB        } from '../modules/local/blast_makeblastdb'
@@ -146,6 +148,8 @@ workflow NANOPORE {
 
   CAT_NANOPORE_FASTQ(ch_reads)
 
+
+
   // IRMA to generate amended consensus sequences
   IRMA(CAT_NANOPORE_FASTQ.out.reads, irma_module)
   ch_versions = ch_versions.mix(IRMA.out.versions)
@@ -222,11 +226,21 @@ workflow NANOPORE {
 
   CAT_CONSENSUS(ch_final_consensus)
   ch_versions = ch_versions.mix(CAT_CONSENSUS.out.versions)
+  
+  if(params.with_nextclade){
+    NEXTCLADE_DATASETGET(params.nextclade_dataset, 
+                        params.nextclade_reference,
+                        params.nextclade_tag)
+    combined_consensus = CAT_CONSENSUS.out.consensus_fasta.collect()
+    NEXTCLADE_RUN(combined_consensus, NEXTCLADE_DATASETGET.out.dataset)
+  }
+
 
   CAT_CONSENSUS.out.fasta
     .map { [[id:it[0]], it[1]] }
     .set { ch_cat_consensus }
 
+  
   BLAST_BLASTN_CONSENSUS(ch_cat_consensus, BLAST_MAKEBLASTDB_NCBI.out.db)
   ch_versions = ch_versions.mix(BLAST_BLASTN_CONSENSUS.out.versions)
 

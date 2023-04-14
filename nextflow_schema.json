@@ -41,6 +41,30 @@
             "required": [
                 "input"
             ]
+        },"nextclade_options": {
+            "properties": {
+                "with_nextclade": {
+                    "type": "boolean",
+                    "description": "Run and update Nextclade (only runs on Nanopore data)",
+                    "default": "true"
+                },
+                "nextclade_dataset": {
+                    "type": "string",
+                    "description": "Nextclade dataset to use",
+                    "default": "flu_h1n1pdm_ha"
+                },
+                "nextclade_reference": {
+                    "type": "string",
+                    "description": "Dataset reference to use",
+                    "default": "CY121680"
+                },
+                "nextclade_tag": {
+                    "type": "string",
+                    "description": "dataset tag",
+                    "default": "2023-04-02T12:00:00Z"
+                }
+
+            }
         },"variant_calling_options": {
             "title": "Variant calling options",
             "type": "object",
