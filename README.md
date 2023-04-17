@@ -78,6 +78,7 @@ The nf-flu pipeline comes with:
 * [NCBI Influenza FTP site](https://ftp.ncbi.nih.gov/genomes/INFLUENZA/)
 * [IRMA][] Iterative Refinement Meta-Assembler
   * [IRMA Publication](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-3030-6)
+* [Nextclade](https://nextstrain.org/)
 
 ## Credits
 

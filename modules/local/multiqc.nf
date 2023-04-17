@@ -1,18 +1,20 @@
 process MULTIQC {
   label 'process_low'
 
-  conda (params.enable_conda ? "bioconda::multiqc=1.12" : null)
+  conda (params.enable_conda ? "bioconda::multiqc=1.14" : null)
   if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-    container 'https://depot.galaxyproject.org/singularity/multiqc:1.12--pyhdfd78af_0'
+    container 'https://depot.galaxyproject.org/singularity/multiqc:1.14--pyhdfd78af_0'
   } else {
-    container 'quay.io/biocontainers/multiqc:1.12--pyhdfd78af_0'
+    container 'quay.io/biocontainers/multiqc:1.14--pyhdfd78af_0'
   }
+
 
   input:
   path(multiqc_custom_config)
   path('samtools/*')
   path('mosdepth/*')
   path('bcftools/*')
+  path('nextclade/*')
   path('software_versions/*')
   path(workflow_summary)
 

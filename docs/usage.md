@@ -265,6 +265,42 @@ Path/URL to NCBI Influenza DB sequences FASTA file.
 
 Path/URL to NCBI Influenza DB metadata file.
 
+### Nextclade options
+
+Nextclade dataset options.
+
+#### `--skip_nextclade`
+
+- Optional
+- Type: boolean
+- Default: `false`
+
+Skip Nextclade analysis?
+
+#### `--nextclade_dataset`
+
+- Optional
+- Type: string
+- Default: `flu_h1n1pdm_ha`
+
+Name of Nextclade dataset to retrieve. A list of available datasets can be obtained using the nextclade dataset list command.
+
+#### `--nextclade_reference`
+
+- Optional
+- Type: string
+- Default: `CY121680`
+
+Accession id to download Nextclade dataset based on a particular reference sequence. A list of available datasets can be obtained using the nextclade dataset list command.
+
+#### `--nextclade_tag`
+
+- Optional
+- Type: string
+- Default: `2023-04-02T12:00:00Z`
+
+Version tag of the Nextclade dataset to download. A list of available datasets can be obtained using the nextclade dataset list command.
+
 ### Generic options
 
 Less common options for the pipeline, typically set in a config file.
