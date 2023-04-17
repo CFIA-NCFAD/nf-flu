@@ -152,10 +152,13 @@ The report contains 2 sheets:
 </details>
 
 ### Nextclade
+
+[Nextclade] is a tool that identifies differences between your sequences and a reference sequence, uses these differences to assign your sequences to clades, and reports potential sequence quality issues in your data.
+
 <details markdown="1">
 <summary>Output files</summary>
 
-- `nextclade/sample_info/`
+- `nextclade/`
   - Aligned sequences: `nextclade.aligned.fasta`
   - Auspice Tree: `nextclade.auspice.json` (can be viewed: https://auspice.us/)
   - Nextclade output csv: `nextclade.csv`
@@ -164,9 +167,7 @@ The report contains 2 sheets:
   - JSON summary of information: `nextclade.json/nextclade.ndjson`
   - Nextclade output tsv: `nextclade.tsv`
 
-
 </details>
-
 
 ### H/N Subtyping
 
@@ -280,3 +281,4 @@ Below are shown the fields for the "3_H Segment Results" sheet. The fields are n
 
 [NCBI Influenza DB]: https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 [IRMA]: https://wonder.cdc.gov/amd/flu/irma/
+[Nextclade]: https://docs.nextstrain.org/projects/nextclade/en/stable/user/nextclade-cli.html

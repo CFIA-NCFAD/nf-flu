@@ -41,35 +41,8 @@
             "required": [
                 "input"
             ]
-        },"nextclade_options": {
-            "title": "Nextclade options",
-            "type": "object",
-            "fa_icon": "fas fa-terminal",
-            "description": "Nextclade dataset options.",
-            "properties": {
-                "with_nextclade": {
-                    "type": "boolean",
-                    "description": "Run and update Nextclade (only runs on Nanopore data)",
-                    "default": "true"
-                },
-                "nextclade_dataset": {
-                    "type": "string",
-                    "description": "Nextclade dataset to use",
-                    "default": "flu_h1n1pdm_ha"
-                },
-                "nextclade_reference": {
-                    "type": "string",
-                    "description": "Dataset reference to use",
-                    "default": "CY121680"
-                },
-                "nextclade_tag": {
-                    "type": "string",
-                    "description": "dataset tag",
-                    "default": "2023-04-02T12:00:00Z"
-                }
-
-            }
-        },"variant_calling_options": {
+        },
+        "variant_calling_options": {
             "title": "Variant calling options",
             "type": "object",
             "description": "Various options for the variant calling branch of the pipeline.",
@@ -247,6 +220,35 @@
                 }
             },
             "fa_icon": "fas fa-virus"
+        },
+        "nextclade_options": {
+            "title": "Nextclade options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Nextclade dataset options.",
+            "properties": {
+                "skip_nextclade": {
+                    "type": "boolean",
+                    "description": "Skip Nextclade analysis?",
+                    "default": "false"
+                },
+                "nextclade_dataset": {
+                    "type": "string",
+                    "description": "Name of Nextclade dataset to retrieve. A list of available datasets can be obtained using the nextclade dataset list command.",
+                    "default": "flu_h1n1pdm_ha"
+                },
+                "nextclade_reference": {
+                    "type": "string",
+                    "description": "Accession id to download Nextclade dataset based on a particular reference sequence. A list of available datasets can be obtained using the nextclade dataset list command.",
+                    "default": "CY121680"
+                },
+                "nextclade_tag": {
+                    "type": "string",
+                    "description": "Version tag of the Nextclade dataset to download. A list of available datasets can be obtained using the nextclade dataset list command.",
+                    "default": "2023-04-02T12:00:00Z"
+                }
+
+            }
         },
         "generic_options": {
             "title": "Generic options",

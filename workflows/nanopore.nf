@@ -25,7 +25,7 @@ include { CAT_CONSENSUS                                       } from '../modules
 include { SEQTK_SEQ                                           } from '../modules/local/seqtk_seq'
 include { CHECK_SAMPLE_SHEET                                  } from '../modules/local/check_sample_sheet'
 include { CHECK_REF_FASTA                                     } from '../modules/local/check_ref_fasta'
-include { NEXTCLADE_DATASETGET; NEXTCLADE_RUN } from '../modules/local/nextclade.nf'
+include { NEXTCLADE_DATASETGET; NEXTCLADE_RUN                 } from '../modules/local/nextclade.nf'
 
 // using modified BLAST_MAKEBLASTDB from nf-core/modules to only move/publish BLAST DB files
 include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_NCBI         } from '../modules/local/blast_makeblastdb'
@@ -148,8 +148,6 @@ workflow NANOPORE {
 
   CAT_NANOPORE_FASTQ(ch_reads)
 
-
-
   // IRMA to generate amended consensus sequences
   IRMA(CAT_NANOPORE_FASTQ.out.reads, irma_module)
   ch_versions = ch_versions.mix(IRMA.out.versions)
@@ -227,20 +225,26 @@ workflow NANOPORE {
   CAT_CONSENSUS(ch_final_consensus)
   ch_versions = ch_versions.mix(CAT_CONSENSUS.out.versions)
   
-  if(params.with_nextclade){
-    NEXTCLADE_DATASETGET(params.nextclade_dataset, 
-                        params.nextclade_reference,
-                        params.nextclade_tag)
-    combined_consensus = CAT_CONSENSUS.out.consensus_fasta.collect()
-    NEXTCLADE_RUN(combined_consensus, NEXTCLADE_DATASETGET.out.dataset)
+  if(!params.skip_nextclade){
+    // TODO: PK: select dataset for each sample based on subtyping results?
+    NEXTCLADE_DATASETGET(
+      params.nextclade_dataset,
+      params.nextclade_reference,
+      params.nextclade_tag
+    )
+    ch_versions = ch_versions.mix(NEXTCLADE_DATASETGET.out.versions)
+    // TODO: PK: prefilter for segments that make sense given Nextclade dataset being used
+    NEXTCLADE_RUN(
+      CAT_CONSENSUS.out.consensus_fasta.collect(),
+      NEXTCLADE_DATASETGET.out.dataset
+    )
+    ch_versions = ch_versions.mix(NEXTCLADE_RUN.out.versions)
   }
-
 
   CAT_CONSENSUS.out.fasta
     .map { [[id:it[0]], it[1]] }
     .set { ch_cat_consensus }
 
-  
   BLAST_BLASTN_CONSENSUS(ch_cat_consensus, BLAST_MAKEBLASTDB_NCBI.out.db)
   ch_versions = ch_versions.mix(BLAST_BLASTN_CONSENSUS.out.versions)
 
@@ -270,6 +274,7 @@ workflow NANOPORE {
       MINIMAP2.out.stats.collect().ifEmpty([]),
       MOSDEPTH_GENOME.out.mqc.collect().ifEmpty([]),
       BCFTOOLS_STATS.out.stats.collect().ifEmpty([]),
+      NEXTCLADE_RUN.out.outdir.ifEmpty([]),
       SOFTWARE_VERSIONS.out.mqc_yml.collect(),
       ch_workflow_summary.collectFile(name: "workflow_summary_mqc.yaml")
   )
