@@ -23,10 +23,13 @@ def main(input_fasta: Path, output_fasta: Path):
     )
     ref_fasta = SeqIO.parse(open(input_fasta), 'fasta')
     with open(output_fasta, 'w') as outfile:
-        for record in ref_fasta:
-            seqid, sequence = record.id.strip(), record.seq
-            seq_record_id = re.sub(r"[()\"#/@;:<>{}`+=~|!?,]", "_", seqid)
-            outfile.write(f'>{seq_record_id}\n{sequence}\n')
+        for rec in ref_fasta:
+            seqid, sequence = rec.id, rec.seq
+            #replace non-word, non-digit, non-period or dash characters
+            new_seqid = re.sub(r'[^\w\-]+', '_', seqid)
+            # remove leading and trailing underscores
+            new_seqid = re.sub(r'^_|_$', '', new_seqid)
+            outfile.write(f'>{new_seqid}\n{sequence.upper()}\n')
 
 
 if __name__ == "__main__":

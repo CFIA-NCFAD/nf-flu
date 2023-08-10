@@ -9,7 +9,6 @@ include { IRMA                                                } from '../modules
 include { SUBTYPING_REPORT as SUBTYPING_REPORT_IRMA_CONSENSUS } from '../modules/local/subtyping_report'
 include { SUBTYPING_REPORT as SUBTYPING_REPORT_BCF_CONSENSUS  } from '../modules/local/subtyping_report'
 include { COVERAGE_PLOT                                       } from '../modules/local/coverage_plot'
-include { BLASTN_REPORT                                       } from '../modules/local/blastn_report'
 include { VCF_FILTER_FRAMESHIFT                               } from '../modules/local/vcf_filter_frameshift'
 include { MEDAKA                                              } from '../modules/local/medaka'
 include { MINIMAP2                                            } from '../modules/local/minimap2'
@@ -27,10 +26,10 @@ include { CHECK_SAMPLE_SHEET                                  } from '../modules
 include { CHECK_REF_FASTA                                     } from '../modules/local/check_ref_fasta'
 // using modified BLAST_MAKEBLASTDB from nf-core/modules to only move/publish BLAST DB files
 include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_NCBI         } from '../modules/local/blast_makeblastdb'
-include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_REFDB        } from '../modules/local/blast_makeblastdb'
 include { BLAST_BLASTN as BLAST_BLASTN_IRMA                   } from '../modules/local/blastn'
 include { BLAST_BLASTN as BLAST_BLASTN_CONSENSUS              } from '../modules/local/blastn'
-include { BLAST_BLASTN as BLAST_BLASTN_CONSENSUS_REF_DB       } from '../modules/local/blastn'
+include { EDLIB_ALIGN; EDLIB_MULTIQC                          } from '../modules/local/edlib'
+include { SNP_REPORT                                          } from '../modules/local/snp_report'
 include { CUSTOM_DUMPSOFTWAREVERSIONS  as SOFTWARE_VERSIONS   } from '../modules/nf-core/modules/custom/dumpsoftwareversions/main'
 include { MULTIQC                                             } from '../modules/local/multiqc'
 
@@ -247,15 +246,15 @@ workflow NANOPORE {
   SUBTYPING_REPORT_BCF_CONSENSUS(ZSTD_DECOMPRESS_CSV.out.file, ch_blastn_consensus)
   ch_versions = ch_versions.mix(SUBTYPING_REPORT_BCF_CONSENSUS.out.versions)
 
+  ch_edlib_multiqc = Channel.empty()
   if (params.ref_db){
-    BLAST_MAKEBLASTDB_REFDB(CHECK_REF_FASTA.out.fasta)
-    ch_versions = ch_versions.mix(BLAST_MAKEBLASTDB_REFDB.out.versions)
-
-    BLAST_BLASTN_CONSENSUS_REF_DB(ch_cat_consensus, BLAST_MAKEBLASTDB_REFDB.out.db)
-    ch_versions = ch_versions.mix(BLAST_BLASTN_CONSENSUS_REF_DB.out.versions)
-
-    BLASTN_REPORT(BLAST_BLASTN_CONSENSUS_REF_DB.out.txt)
-    ch_versions = ch_versions.mix(BLASTN_REPORT.out.versions)
+    EDLIB_ALIGN(CAT_CONSENSUS.out.consensus_fasta, CHECK_REF_FASTA.out.fasta)
+    ch_versions = ch_versions.mix(EDLIB_ALIGN.out.versions)
+    SNP_REPORT(EDLIB_ALIGN.out.json)
+    ch_versions = ch_versions.mix(SNP_REPORT.out.versions)
+    EDLIB_ALIGN.out.json
+    .map { [it.last()] } | collect | EDLIB_MULTIQC
+    ch_edlib_multiqc = EDLIB_MULTIQC.out.txt
   }
 
   workflow_summary    = Schema.params_summary_multiqc(workflow, summary_params)
@@ -269,6 +268,7 @@ workflow NANOPORE {
       MINIMAP2.out.stats.collect().ifEmpty([]),
       MOSDEPTH_GENOME.out.mqc.collect().ifEmpty([]),
       BCFTOOLS_STATS.out.stats.collect().ifEmpty([]),
+      ch_edlib_multiqc.collect().ifEmpty([]),
       SOFTWARE_VERSIONS.out.mqc_yml.collect(),
       ch_workflow_summary.collectFile(name: "workflow_summary_mqc.yaml")
   )
