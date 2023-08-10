@@ -115,13 +115,12 @@ Nucleotide [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) (`blastn`) is used 
     - `<sample>.Segment.UserSequences.edlib.txt`
 
 </details>
-The report contains 4 sheets:
+The SNP report of each sample contains 4 sheets:
 
 - **1_EDLIB_Report**: General statistics of Global Alignment
 - **2_Mismatch**: Count number of mismatches in Global Alignment of consensus sequences against user sequences
 - **3_Indels**: Count number of indels in Global Alignment of consensus sequences against user sequences
 - **4_EditDistance**: Count number of Edit Distance (Levenshtein Distance) in Global Alignment of consensus sequences against user sequences, Edit distance is the sum of mismatches and indels
-
 
 ### Mismatch Report
 

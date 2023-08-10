@@ -172,7 +172,6 @@ Ewels, P.A., Peltzer, A., Fillinger, S., Patel, H., Alneberg, J., Wilm, A., Garc
 
 [edlib][] is used for Global pairwise alignment of consensus sequences against user sequences . Available from GitHub at [Martinsos/edlib](https://github.com/Martinsos/edlib)
 
-
 ## Credits
 
 The nf-flu pipeline was originally developed by [Peter Kruczkiewicz](https://github.com/peterk87) from [CFIA-NCFAD](https://github.com/CFIA-NCFAD), [Hai Nguyen](https://github.com/nhhaidee) extended the piepline for Nanopore data analysis.
