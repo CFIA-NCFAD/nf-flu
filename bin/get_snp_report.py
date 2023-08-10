@@ -8,17 +8,6 @@ import pandas as pd
 import numpy as np
 import re
 
-influenza_segment = {
-    1: "1_PB2",
-    2: "2_PB1",
-    3: "3_PA",
-    4: "4_HA",
-    5: "5_NP",
-    6: "6_NA",
-    7: "7_M",
-    8: "8_NS",
-}
-
 edlib_columns = [
     ('sample', str),
     ('segment', str),

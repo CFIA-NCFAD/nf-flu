@@ -168,6 +168,11 @@ Ewels, P.A., Peltzer, A., Fillinger, S., Patel, H., Alneberg, J., Wilm, A., Garc
 
 [seqtk][] is used for rapid manipulation of FASTA/Q files. Available from GitHub at [lh3/seqtk](https://github.com/lh3/seqtk)
 
+### [edlib][]
+
+[edlib][] is used for Global pairwise alignment of consensus sequences against user sequences . Available from GitHub at [Martinsos/edlib](https://github.com/Martinsos/edlib)
+
+
 ## Credits
 
 The nf-flu pipeline was originally developed by [Peter Kruczkiewicz](https://github.com/peterk87) from [CFIA-NCFAD](https://github.com/CFIA-NCFAD), [Hai Nguyen](https://github.com/nhhaidee) extended the piepline for Nanopore data analysis.
@@ -192,4 +197,5 @@ The nf-flu pipeline was originally developed by [Peter Kruczkiewicz](https://git
 [Medaka]: https://github.com/nanoporetech/medaka
 [Mosdepth]: https://github.com/brentp/mosdepth
 [seqtk]: https://github.com/lh3/seqtk
+[edlib]: https://github.com/Martinsos/edlib
 [MultiQC]: https://multiqc.info/
