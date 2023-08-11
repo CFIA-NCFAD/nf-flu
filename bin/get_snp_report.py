@@ -48,21 +48,9 @@ def main(excel_report,json_path):
             mismatch = df.query("reference == @ref_name and segment == @segment")["mismatches"].values
             indel = df.query("reference == @ref_name and segment == @segment")["indels"].values
             edit_distance = df.query("reference == @ref_name and segment == @segment")["editDistance"].values
-            # mismatch
-            if len(mismatch):
-                df_mismatch_report.loc[segment, ref_name] = mismatch[0]
-            else:
-                df_mismatch_report.loc[segment, ref_name] = ''
-            #indel
-            if len(indel):
-                df_indel_report.loc[segment, ref_name] = indel[0]
-            else:
-                df_indel_report.loc[segment, ref_name] = ''
-            #edit distance
-            if len(edit_distance):
-                df_editdistance_report.loc[segment, ref_name] = edit_distance[0]
-            else:
-                df_editdistance_report.loc[segment, ref_name] = ''
+            df_mismatch_report.loc[segment, ref_name] = mismatch[0] if len(mismatch) else ''
+            df_indel_report.loc[segment, ref_name] = indel[0] if len(indel) else ''
+            df_editdistance_report.loc[segment, ref_name] = edit_distance[0] if len(edit_distance) else ''
     df_mismatch_report.insert(0, "Segment", segments)
     df_indel_report.insert(0, "Segment", segments)
     df_editdistance_report.insert(0, "Segment", segments)

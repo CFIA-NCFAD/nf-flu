@@ -37,9 +37,9 @@ def main(sample,
                 aln['consensus_n_chars'] = con_n_chars
                 aln['reference_n_chars'] = ref_n_chars
                 mismatches = nice_aln['matched_aligned'].count('.')
-                indels = nice_aln['matched_aligned'].count('-')
+                matches = nice_aln['matched_aligned'].count('|')
                 align_len = len(nice_aln['matched_aligned'])
-                matches = align_len - mismatches - indels
+                indels = align_len - mismatches - matches
                 aln['indels'] = indels
                 aln['mismatches'] = mismatches
                 aln['matches'] = matches
@@ -68,6 +68,7 @@ def main(sample,
                     aln_keys = ['editDistance', 'alignmentLength', 'matches', 'mismatches', 'indels', 'identity', 'alphabetLength', 'locations', 'cigar']
                     max_aln_key_len = max(len(x) for x in aln_keys)
                     for x in aln_keys:
+                        print (aln[x])
                         fh.write(f'{x}:{" " * (max_aln_key_len - len(x))} {aln[x]}\n')
                     write_nice_alignment(nice_aln, fh, recref, sample)
 
@@ -84,7 +85,7 @@ def write_nice_alignment(nice_aln, fh, recref, sample):
     line_width = 60
     for i in range(0, aln_len, line_width):
         for key in ['query_aligned', 'matched_aligned', 'target_aligned']:
-            fh.write(f'{key[0].upper()} {i + 1: 5} {nice_aln[key][i:i + line_width + 1]}\n')
+            fh.write(f'{key[0].upper()} {i + 1: 5} {nice_aln[key][i:i + line_width]}\n')
         fh.write(f'\n')
 
 
