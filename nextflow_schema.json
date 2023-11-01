@@ -114,6 +114,11 @@
                     "default": 100,
                     "description": "Minimum number of raw reads required per sample in order to be considered for the downstream processing steps.",
                     "fa_icon": "fas fa-hand-paper"
+                },
+                "test_nanopore": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run test for nanopore platform."
                 }
             }
         },
@@ -288,6 +293,18 @@
                     "description": "Show all params when using `--help`",
                     "hidden": true,
                     "help_text": "By default, parameters set as _hidden_ in the schema are not shown on the command line when a user runs with `--help`. Specifying this option will tell the pipeline to show all parameters."
+                },
+                "config_profile_name": {
+                    "type": "string",
+                    "description": "Institutional config name.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
+                },
+                "config_profile_description": {
+                    "type": "string",
+                    "description": "Institutional config description.",
+                    "hidden": true,
+                    "fa_icon": "fas fa-users-cog"
                 }
             }
         },

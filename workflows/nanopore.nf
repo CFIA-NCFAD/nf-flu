@@ -24,6 +24,7 @@ include { CAT_DB                                              } from '../modules
 include { CAT_CONSENSUS                                       } from '../modules/local/misc'
 include { SEQTK_SEQ                                           } from '../modules/local/seqtk_seq'
 include { CHECK_SAMPLE_SHEET                                  } from '../modules/local/check_sample_sheet'
+include { PREPARE_NANOPORE_TEST                               } from '../modules/local/prepare_nanopore_test'
 include { CHECK_REF_FASTA                                     } from '../modules/local/check_ref_fasta'
 // using modified BLAST_MAKEBLASTDB from nf-core/modules to only move/publish BLAST DB files
 include { BLAST_MAKEBLASTDB as BLAST_MAKEBLASTDB_NCBI         } from '../modules/local/blast_makeblastdb'
@@ -50,8 +51,13 @@ def summary_params = NfcoreSchema.params_summary_map(workflow, params, json_sche
 
 workflow NANOPORE {
   ch_versions = Channel.empty()
+  if (params.test_nanopore){
+    PREPARE_NANOPORE_TEST()
+    ch_input = CHECK_SAMPLE_SHEET(PREPARE_NANOPORE_TEST.out.samplesheet)
+  } else {
+    ch_input = CHECK_SAMPLE_SHEET(Channel.fromPath(params.input, checkIfExists: true))
+  }
 
-  ch_input = CHECK_SAMPLE_SHEET(Channel.fromPath(params.input, checkIfExists: true))
 
   ch_input.splitCsv(header: ['sample', 'reads'], sep: ',', skip: 1)
     // "reads" can be path to file or directory
