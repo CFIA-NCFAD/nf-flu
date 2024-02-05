@@ -70,7 +70,7 @@ process CAT_CONSENSUS {
 
   output:
   tuple val(sample), path('*.consensus.blastn.fasta'), emit: fasta
-  path('*.consensus.fasta'), emit: consensus_fasta
+  tuple val(sample), path('*.consensus.fasta'), emit: consensus_fasta
   path "versions.yml" , emit: versions
 
   script:

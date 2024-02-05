@@ -12,6 +12,7 @@ report_section_order:
 read_count_multiplier: 1.0
 read_count_prefix: ''
 read_count_desc: ''
+max_table_rows: 1000
 
 export_plots: true
 
