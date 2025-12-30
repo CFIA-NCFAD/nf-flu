@@ -81,8 +81,8 @@ info "Starting nf-flu assemblies test execution script with ${CPU} CPU cores and
 
 VADR_MODEL_TARGZ_URL="https://ftp.ncbi.nlm.nih.gov/pub/nawrocki/vadr-models/flu/1.6.3-2/vadr-models-flu-1.6.3-2.tar.gz"
 VADR_MODEL_TARGZ="vadr-models-flu-1.6.3-2.tar.gz"
-FASTA_ZST_URL="https://figshare.com/ndownloader/files/53449877"
-CSV_ZST_URL="https://figshare.com/ndownloader/files53449874"
+FASTA_ZST_URL="https://github.com/nhhaidee/nf-test-datasets/raw/refs/heads/master/nf-flu/2025-04-04-influenza.fasta.zst"
+CSV_ZST_URL="https://github.com/nhhaidee/nf-test-datasets/raw/refs/heads/master/nf-flu/2025-04-04-influenza.csv.zst"
 FASTA_ZST_FILE="influenza.fna.zst"
 CSV_ZST_FILE="influenza.csv.zst"
 FASTAS_URL="https://github.com/CFIA-NCFAD/nf-test-datasets/raw/refs/heads/nf-flu/fastas.tar.gz"
