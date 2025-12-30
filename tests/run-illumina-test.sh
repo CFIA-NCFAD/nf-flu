@@ -83,8 +83,8 @@ info "Starting nf-flu Illumina test execution script with ${CPU} CPU cores and $
 
 VADR_MODEL_TARGZ_URL="https://ftp.ncbi.nlm.nih.gov/pub/nawrocki/vadr-models/flu/1.6.3-2/vadr-models-flu-1.6.3-2.tar.gz"
 VADR_MODEL_TARGZ="vadr-models-flu-1.6.3-2.tar.gz"
-FASTA_ZST_URL="https://api.figshare.com/v2/file/download/53449877"
-CSV_ZST_URL="https://api.figshare.com/v2/file/download/53449874"
+FASTA_ZST_URL="https://figshare.com/ndownloader/files/53449877"
+CSV_ZST_URL="https://figshare.com/ndownloader/files/53449874"
 FASTA_ZST_FILE="influenza.fna.zst"
 CSV_ZST_FILE="influenza.csv.zst"
 
