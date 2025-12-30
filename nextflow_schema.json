@@ -240,13 +240,13 @@
                 },
                 "ncbi_influenza_fasta": {
                     "type": "string",
-                    "default": "https://api.figshare.com/v2/file/download/53449877",
+                    "default": "https://figshare.com/ndownloader/files/53449877",
                     "description": "Path/URL to Zstandard compressed NCBI Influenza virus sequences FASTA file.",
                     "fa_icon": "fas fa-file-alt"
                 },
                 "ncbi_influenza_metadata": {
                     "type": "string",
-                    "default": "https://api.figshare.com/v2/file/download/53449874",
+                    "default": "https://figshare.com/ndownloader/files/53449874",
                     "description": "Path/URL to Zstandard compressed NCBI Influenza virus sequences metadata CSV file.",
                     "fa_icon": "fas fa-file-csv"
                 }

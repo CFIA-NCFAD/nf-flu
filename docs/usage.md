@@ -294,7 +294,7 @@ Maximum of top blastn result reported
 
 - Optional
 - Type: string
-- Default: `https://api.figshare.com/v2/file/download/53449877`
+- Default: `https://figshare.com/ndownloader/files/53449877`
 
 Path/URL to Zstandard compressed NCBI Influenza virus sequences FASTA file.
 
@@ -302,7 +302,7 @@ Path/URL to Zstandard compressed NCBI Influenza virus sequences FASTA file.
 
 - Optional
 - Type: string
-- Default: `https://api.figshare.com/v2/file/download/53449874`
+- Default: `https://figshare.com/ndownloader/files/53449874`
 
 Path/URL to Zstandard compressed NCBI Influenza virus sequences metadata CSV file.
 
