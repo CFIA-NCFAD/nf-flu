@@ -254,6 +254,7 @@ Below are shown the fields for the "3_H Segment Results" sheet. The fields are n
 |H: top match country|Reference sequence country of isolation|Mexico|
 |H: top match collection date|Reference sequence date of collection|2009/04/27|
 |H: type prediction|H segment subtype prediction|1|
+
 ### Annotation
 
 Consensus sequences are annotated using [VADR][]. The output files are available in multiple formats including Feature Table, Genbank, nucleotide and amino acid FASTA and GFF.
