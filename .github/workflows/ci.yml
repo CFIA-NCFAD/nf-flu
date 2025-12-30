@@ -87,21 +87,29 @@ jobs:
         id: cache-influenza-fna
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna-v2
+          key: influenza-fna
       - name: Subsample NCBI influenza.fna
         if: steps.cache-influenza-fna.outputs.cache-hit != 'true'
         run: |
-          curl --silent -SLk ${FASTA_ZST_URL} | zstdcat | seqtk sample -s 789 - 10000 | zstd -ck > influenza-10k.fna.zst
+          curl --fail -SLk ${FASTA_ZST_URL} | zstdcat | seqtk sample -s 789 - 10000 | zstd -ck > influenza-10k.fna.zst
+          if [ $(stat -c%s "influenza-10k.fna.zst") -lt 10000 ]; then
+            echo "ERROR: influenza-10k.fna.zst is too small or empty!"
+            exit 1
+          fi
       - name: Cache influenza.csv
         uses: actions/cache@v4
         id: cache-influenza-csv
         with:
           path: influenza.csv.zst
-          key: influenza-csv-v2
+          key: influenza-csv
       - name: Download influenza.csv
         if: steps.cache-influenza-csv.outputs.cache-hit != 'true'
         run: |
-          curl --silent -SLk ${CSV_ZST_URL} > influenza.csv.zst
+          curl --fail -SLk ${CSV_ZST_URL} > influenza.csv.zst
+          if [ ! -s influenza.csv.zst ]; then
+            echo "ERROR: influenza.csv.zst is empty!"
+            exit 1
+          fi
       - name: Cache VADR flu model tar.gz
         uses: actions/cache@v4
         id: cache-vadr-models
@@ -131,12 +139,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna-v2
+          key: influenza-fna
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv-v2
+          key: influenza-csv
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
@@ -212,12 +220,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna-v2
+          key: influenza-fna
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv-v2
+          key: influenza-csv
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
@@ -304,12 +312,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna-v2
+          key: influenza-fna
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv-v2
+          key: influenza-csv
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
