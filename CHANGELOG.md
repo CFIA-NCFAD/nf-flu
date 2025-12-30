@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [[3.10.2](https://github.com/CFIA-NCFAD/nf-flu/releases/tag/3.10.2)] - 2025-12-30
+
+This patch release updates URL for `ncbi_influenza_fasta` and `ncbi_influenza_metadata`
+
 ## [[3.10.1](https://github.com/CFIA-NCFAD/nf-flu/releases/tag/3.10.1)] - 2025-09-15
 
 This patch release updates `nextflow_schema.json`, removing a duplicate `FLU` option from the `irma_module` ENUM. This fix is necessary in order to allow the pipeline to be launched using Seqera Platform.
