@@ -87,7 +87,7 @@ jobs:
         id: cache-influenza-fna
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna
+          key: influenza-fna-v2
       - name: Subsample NCBI influenza.fna
         if: steps.cache-influenza-fna.outputs.cache-hit != 'true'
         run: |
@@ -97,7 +97,7 @@ jobs:
         id: cache-influenza-csv
         with:
           path: influenza.csv.zst
-          key: influenza-csv
+          key: influenza-csv-v2
       - name: Download influenza.csv
         if: steps.cache-influenza-csv.outputs.cache-hit != 'true'
         run: |
@@ -131,12 +131,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna
+          key: influenza-fna-v2
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv
+          key: influenza-csv-v2
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
@@ -212,12 +212,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna
+          key: influenza-fna-v2
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv
+          key: influenza-csv-v2
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
@@ -304,12 +304,12 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: influenza-10k.fna.zst
-          key: influenza-fna
+          key: influenza-fna-v2
       - name: restore cached influenza.csv.zst
         uses: actions/cache/restore@v4
         with:
           path: influenza.csv.zst
-          key: influenza-csv
+          key: influenza-csv-v2
       - name: restore cached vadr-models-flu-1.6.3-2.tar.gz
         uses: actions/cache/restore@v4
         with:
