@@ -104,6 +104,10 @@ The nf-flu pipeline comes with:
 * [Usage](docs/usage.md) and
 * [Output](docs/output.md) documentation.
 
+## Note
+
+* The pipeline requires internet access to download the latest NCBI Influenza virus sequences and metadata at the start of each run unless a local copy is provided via the `--ncbi_influenza_fasta` and `--ncbi_influenza_metadata` parameters. However, if you encounter error "Unable to stage foreign file" when online repositories change URL or apply security restriction for automated download, you can manually download DB (https://api.figshare.com/v2/file/download/53449877 and https://api.figshare.com/v2/file/download/53449874) and store it locally and then provide the local paths to the downloaded files via the `--ncbi_influenza_fasta` and `--ncbi_influenza_metadata` parameters. If there is any problem, please open issue and will update the links.
+
 ## Resources and References
 
 ### [BcfTools][] and [Samtools][]

@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [[3.10.3](https://github.com/CFIA-NCFAD/nf-flu/releases/tag/3.10.3)] - 2026-01-26
+
+Reverse URL (https://api.figshare.com/v2/file/download/53449877 and https://api.figshare.com/v2/file/download/53449874) for test data used in GitHub Actions CI and NCBI Influenza sequences `ncbi_influenza_fasta` and metadata `ncbi_influenza_metadata` used by default by nf-flu.
+
 ## [[3.10.2](https://github.com/CFIA-NCFAD/nf-flu/releases/tag/3.10.2)] - 2025-30-12
 
 Update URL for test data used in GitHub Actions CI and NCBI Influenza sequences `ncbi_influenza_fasta` and metadata `ncbi_influenza_metadata` used by default by nf-flu.
