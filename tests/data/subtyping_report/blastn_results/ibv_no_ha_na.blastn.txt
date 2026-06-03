@@ -1,0 +1,3 @@
+ibv_no_ha_na_1	IBV-SEG1	95.0	500	10	0	1	500	1	500	0.0	400.0	1500	1500	95.0	Influenza B virus segment 1
+ibv_no_ha_na_2	IBV-SEG2	95.0	500	10	0	1	500	1	500	0.0	390.0	1500	1500	95.0	Influenza B virus segment 2
+ibv_no_ha_na_5	IBV-SEG5	95.0	500	10	0	1	500	1	500	0.0	380.0	1500	1500	95.0	Influenza B virus segment 5

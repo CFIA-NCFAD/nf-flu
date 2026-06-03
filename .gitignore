@@ -41,6 +41,8 @@ env/
 # Local scratch (not tests/ — project test suite)
 test/
 data/
+!tests/data/
+!tests/data/**
 
 # IDE
 .idea/
