@@ -15,7 +15,7 @@ import sys
 from collections import defaultdict
 from os import PathLike
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union, Any
+from typing import Any, Optional, Protocol, cast
 
 import typer
 import numpy as np
@@ -23,7 +23,7 @@ import pandas as pd
 import polars as pl
 from rich.logging import RichHandler
 
-VERSION = "2025.03.1"
+VERSION = "2026.06.1"
 
 logger = logging.getLogger(__name__)
 
@@ -231,7 +231,7 @@ def parse_blast_result(
         top: int = 3,
         pident_threshold: float = 0.85,
         min_aln_length: int = 50,
-) -> Optional[Tuple[pl.DataFrame, Dict, str]]:
+) -> tuple[pl.DataFrame, dict, str] | None:
     logger.info(f"Parsing BLAST results from {blast_result}")
 
     try:
@@ -312,25 +312,80 @@ def parse_blast_result(
     genus = top_genus(df_merge)
     if not get_top_ref:
         is_iav = genus == 'Alphainfluenzavirus'
-        H_results = None
-        N_results = None
-        if "4" in segments:
-            H_results = find_h_or_n_type(df_merge, "4", is_iav, min_pident=pident_threshold)
-            subtype_results_summary |= H_results
-        if "6" in segments:
-            N_results = find_h_or_n_type(df_merge, "6", is_iav, min_pident=pident_threshold)
-            subtype_results_summary.update(N_results)
+        H_results = find_h_or_n_type(df_merge, "4", is_iav, min_pident=pident_threshold)
+        subtype_results_summary |= H_results
+        N_results = find_h_or_n_type(df_merge, "6", is_iav, min_pident=pident_threshold)
+        subtype_results_summary.update(N_results)
         subtype_results_summary["Genotype"] = get_subtype_value(H_results, N_results, is_iav)
 
     return df_top_seg_matches, subtype_results_summary, genus
 
 
+class _PolarsGroupBy(Protocol):
+    """Subset of Polars group-by API used by ``top_genus``."""
+
+    def first(self) -> pl.DataFrame: ...
+
+    def agg(self, *args: object, **kwargs: object) -> pl.DataFrame: ...
+
+    def sort(self, *args: object, **kwargs: object) -> pl.DataFrame: ...
+
+
+def _polars_groupby(df: pl.DataFrame, *cols: str) -> _PolarsGroupBy:
+    """Select ``group_by`` or ``groupby`` depending on the installed Polars version.
+
+    The pipeline biocontainer pins Polars 0.17.9 (``DataFrame.groupby``). Local dev
+    and pytest use newer Polars, where the method was renamed to ``group_by``. We
+    cannot use ``getattr(df, "group_by", df.groupby)``: on new Polars, accessing
+    ``df.groupby`` raises. The ``Protocol`` return type keeps pyright happy across
+    both versions without importing version-specific ``GroupBy`` types.
+    """
+    if hasattr(df, "group_by"):
+        groupby_obj = getattr(df, "group_by")(*cols)
+    else:
+        groupby_obj = df.groupby(*cols)
+    return cast(_PolarsGroupBy, cast(object, groupby_obj))
+
+
 def top_genus(df: pl.DataFrame) -> str:
-    genus: pl.Series = df['Genus']
-    return genus.value_counts(sort=True)['Genus'][0]
+    """Determine genus by majority vote of top BLAST hit per segment.
+
+    Uses segment-level voting rather than total hit count to avoid one
+    contaminated segment with many hits overriding the true lineage.
+    """
+    df_with_genus = df.filter(pl.col("Genus").is_not_null())
+    if df_with_genus.shape[0] == 0:
+        return df['Genus'].value_counts(sort=True)['Genus'][0]
+
+    sorted_df = df_with_genus.sort(["sample_segment", "bitscore"], descending=[False, True])
+    top_per_segment = _polars_groupby(sorted_df, "sample_segment").first()
+    genus_votes = (
+        _polars_groupby(top_per_segment, "Genus")
+        .agg(
+            pl.count().alias("segment_count"),
+            pl.col("bitscore").sum().alias("bitscore_sum"),
+        )
+        .sort(["segment_count", "bitscore_sum"], descending=[True, True])
+    )
+    if genus_votes.shape[0] == 0:
+        return df_with_genus['Genus'].value_counts(sort=True)['Genus'][0]
+
+    top = genus_votes.to_dicts()[0]
+    logger.debug(
+        "Genus vote by segment: %s",
+        genus_votes.select(["Genus", "segment_count", "bitscore_sum"]).to_dicts(),
+    )
+    logger.info(
+        "Selected genus %s (%s/%s segments, bitscore sum=%s)",
+        top["Genus"],
+        top["segment_count"],
+        top_per_segment.shape[0],
+        top["bitscore_sum"],
+    )
+    return top["Genus"]
 
 
-def get_subtype_value(H_results: Optional[Dict], N_results: Optional[Dict], is_iav: bool) -> str:
+def get_subtype_value(H_results: dict | None, N_results: dict | None, is_iav: bool) -> str:
     subtype = ""
     if not is_iav:
         return "N/A"
@@ -361,7 +416,7 @@ def find_h_or_n_type(
         seg: str,
         is_iav: bool,
         min_pident: float = 0.85,
-) -> Dict[str, Union[str, int, float]]:
+) -> dict[str, str | int | float]:
     assert seg in {
         "4",
         "6",
@@ -457,7 +512,7 @@ def find_h_or_n_type(
             )
             break
 
-    top_result: Dict[str, Any] = list(df_segment.head(1).iter_rows(named=True))[0]
+    top_result: dict[str, Any] = list(df_segment.head(1).iter_rows(named=True))[0]
     db_prop_matches = top_type_count / total_count if is_iav and not isinstance(top_type_count, str) and not isinstance(total_count, str) else "N/A"
     results_summary = {
         f"{h_or_n}_type": top_type if is_iav else "N/A",
@@ -519,7 +574,7 @@ def version_callback(value: bool):
         raise typer.Exit()
 
 
-def get_segment_names(genus: str) -> Dict[int, str]:
+def get_segment_names(genus: str) -> dict[int, str]:
     segment_names = {}
     if genus == 'Alphainfluenzavirus':
         segment_names = IAV_SEGMENT_NAMES
@@ -559,7 +614,7 @@ def get_col_widths(df, index=False):
 
 
 def write_excel(
-        name_dfs: List[Tuple[str, pd.DataFrame]],
+        name_dfs: list[tuple[str, pd.DataFrame]],
         output_dest: PathLike,
         sheet_name_index: bool = True,
 ) -> None:
@@ -624,7 +679,7 @@ def find_matching_files(
         pattern: str,
         recursive: bool = True,
         ignore_case: bool = True,
-) -> List[Path]:
+) -> list[Path]:
     # Walk through the directory recursively, following symlinks
     matching_files = []
     for root, dirs, files in os.walk(directory, followlinks=True):
@@ -632,6 +687,10 @@ def find_matching_files(
             if file_name.endswith(pattern):
                 matching_files.append(Path(root) / file_name)
     return matching_files
+
+# Pipeline conda env pins typer=0.7, which does not support typing.Annotated for CLI
+# metadata; keep typer.Option defaults and silence pyright's default-initializer rule.
+# pyright: reportCallInDefaultInitializer=false
 
 @app.command()
 def report(
@@ -661,7 +720,7 @@ def report(
     if not blast_results:
         logger.error(f"No BLAST results files found in directory '{blast_results}'!")
         sys.exit(1)
-    ordered_samples: Optional[List[str]] = None
+    ordered_samples: list[str] | None = None
     if samplesheet:
         samplesheet_path = Path(samplesheet)
         if samplesheet_path.resolve().exists():
@@ -730,11 +789,8 @@ def report(
         df_subtype_results = pd.DataFrame(all_subtype_results).transpose()
         ordered_sample_to_idx = {sample: idx for idx, sample in enumerate(ordered_samples)} if ordered_samples else None
 
-        cols_concat = {}
-        for col in SUBTYPE_RESULTS_SUMMARY_COLUMNS + H_COLUMNS + N_COLUMNS:
-            if col in df_subtype_results.columns:
-                cols_concat[col] = ''
-        df_subtype_results = df_subtype_results[list(cols_concat.keys())]
+        all_cols = list(dict.fromkeys(SUBTYPE_RESULTS_SUMMARY_COLUMNS + H_COLUMNS + N_COLUMNS))
+        df_subtype_results = df_subtype_results.reindex(columns=all_cols, fill_value="N/A")
 
         if ordered_samples and ordered_sample_to_idx:
             df_subtype_results = df_subtype_results.sort_values(

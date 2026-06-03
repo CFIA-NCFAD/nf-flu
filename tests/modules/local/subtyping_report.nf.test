@@ -1,0 +1,65 @@
+nextflow_process {
+  name "Test SUBTYPING_REPORT"
+  script "modules/local/subtyping_report.nf"
+  process "SUBTYPING_REPORT"
+  config "nextflow.config"
+
+  // input[2] uses vadr_outdirs/.gitkeep as a dummy placeholder so Nextflow stages an empty
+  // VADR directory; these tests do not require any .mdl files.
+
+  test("Should complete when HA and NA segments are absent") {
+    when {
+      process {
+        """
+        input[0] = file("$projectDir/tests/data/subtyping_report/flu_metadata.csv")
+        input[1] = file("$projectDir/tests/data/subtyping_report/blastn_results/ibv_no_ha_na.blastn.txt")
+        input[2] = file("$projectDir/tests/data/subtyping_report/vadr_outdirs/.gitkeep")
+        input[3] = []
+        """
+      }
+    }
+    then {
+      assertAll(
+        { assert process.success },
+        { assert process.trace.tasks().size() == 1 },
+        { assert snapshot(process.out.versions).match("versions_no_ha_na") },
+        {
+          assert snapshot(
+            path(process.out.report_dir.get(0) + "/subtype_predictions.csv"),
+            path(process.out.report_dir.get(0) + "/all_blast_results.csv"),
+            path(process.out.report_dir.get(0) + "/H_segment_results.csv"),
+            path(process.out.report_dir.get(0) + "/N_segment_results.csv"),
+          ).match("report_csvs_no_ha_na")
+        },
+      )
+    }
+  }
+
+  test("Should use IBV segment numbering when IAV contamination has more BLAST hits") {
+    when {
+      process {
+        """
+        input[0] = file("$projectDir/tests/data/subtyping_report/flu_metadata.csv")
+        input[1] = file("$projectDir/tests/data/subtyping_report/blastn_results/ibv_contaminated.blastn.txt")
+        input[2] = file("$projectDir/tests/data/subtyping_report/vadr_outdirs/.gitkeep")
+        input[3] = []
+        """
+      }
+    }
+    then {
+      assertAll(
+        { assert process.success },
+        { assert process.trace.tasks().size() == 1 },
+        { assert snapshot(process.out.versions).match("versions_contaminated") },
+        {
+          assert snapshot(
+            path(process.out.report_dir.get(0) + "/subtype_predictions.csv"),
+            path(process.out.report_dir.get(0) + "/all_blast_results.csv"),
+            path(process.out.report_dir.get(0) + "/H_segment_results.csv"),
+            path(process.out.report_dir.get(0) + "/N_segment_results.csv"),
+          ).match("report_csvs_contaminated")
+        },
+      )
+    }
+  }
+}

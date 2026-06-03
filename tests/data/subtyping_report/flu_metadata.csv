@@ -1,0 +1,7 @@
+#Accession,Release_Date,Genus,Length,Genotype,Segment,Publications,Geo_Location,Host,Isolation_Source,Collection_Date,GenBank_Title
+IBV-SEG1,2020-01-01,Betainfluenzavirus,1500,,1,,Canada,Homo sapiens,,2020,Influenza B virus segment 1
+IBV-SEG2,2020-01-01,Betainfluenzavirus,1500,,2,,Canada,Homo sapiens,,2020,Influenza B virus segment 2
+IBV-SEG5,2020-01-01,Betainfluenzavirus,1500,,5,,Canada,Homo sapiens,,2020,Influenza B virus segment 5
+IBV-SEG7,2020-01-01,Betainfluenzavirus,1500,,7,,Canada,Homo sapiens,,2020,Influenza B virus segment 7
+IBV-SEG8,2020-01-01,Betainfluenzavirus,1500,,8,,Canada,Homo sapiens,,2020,Influenza B virus segment 8
+IAV-SEG3,2020-01-01,Alphainfluenzavirus,1500,H1N1,3,,USA,Homo sapiens,,2020,Influenza A virus (A/test/USA(H1N1)) segment 3

@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+* fix: `subtyping_report.py` edge cases when HA/NA segments are absent or IAV contamination skews genus detection (#134)
+* test: add nf-test for `subtyping_report.nf` covering missing HA/NA segments and IBV/IAV contamination (#134)
+* dev: add pytest job to CI (via uv) and `tests/requirements.txt` for bin script unit tests
+
 ## [[3.10.4](https://github.com/CFIA-NCFAD/nf-flu/releases/tag/3.10.4)] - 2026-05-27
 
 * Update: GenoFLU 1.06 -> 1.07, IRMA 1.0.2 -> 1.2.0

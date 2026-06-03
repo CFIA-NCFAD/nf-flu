@@ -1,12 +1,56 @@
+# Nextflow
 .nextflow/
-.nextflow.log*
-results
+.nextflow*
+work/
+results/
 results*
-results/*
-work
-work/*
-.nextflow.log*
-test/
-.idea/
+
+# nf-test
 .nf-test/
-.nf-test.log
+.nf-test.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+.nox/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Local scratch (not tests/ — project test suite)
+test/
+data/
+!tests/data/
+!tests/data/**
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,59 @@
+ibv_contaminated_1	IBV-SEG1	95.0	500	10	0	1	500	1	500	0.0	100.0	1500	1500	95.0	Influenza B virus segment 1
+ibv_contaminated_2	IBV-SEG2	95.0	500	10	0	1	500	1	500	0.0	100.0	1500	1500	95.0	Influenza B virus segment 2
+ibv_contaminated_5	IBV-SEG5	95.0	500	10	0	1	500	1	500	0.0	100.0	1500	1500	95.0	Influenza B virus segment 5
+ibv_contaminated_7	IBV-SEG7	95.0	500	10	0	1	500	1	500	0.0	100.0	1500	1500	95.0	Influenza B virus segment 7
+ibv_contaminated_8	IBV-SEG8	95.0	500	10	0	1	500	1	500	0.0	100.0	1500	1500	95.0	Influenza B virus segment 8
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
+ibv_contaminated_3	IAV-SEG3	95.0	500	10	0	1	500	1	500	0.0	500.0	1500	1500	95.0	Influenza A virus (A/test/USA(H1N1)) segment 3
