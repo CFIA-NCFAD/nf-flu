@@ -1,0 +1,52 @@
+{
+    "report_csvs_no_ha_na": {
+        "content": [
+            "subtype_predictions.csv:md5,4139616184c6f62f238e00c498155e83",
+            "all_blast_results.csv:md5,e1c0835cc36c6ead5075bbcadad482db",
+            "H_segment_results.csv:md5,febb2711edce3752e41318d46ce6da9c",
+            "N_segment_results.csv:md5,49fc52e6d957b8df3622bcc2eaa0a91b"
+        ],
+        "timestamp": "2026-06-03T12:26:01.471151",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.3"
+        }
+    },
+    "report_csvs_contaminated": {
+        "content": [
+            "subtype_predictions.csv:md5,d2c171fc6ccc3d4b148dd3beff484834",
+            "all_blast_results.csv:md5,5549e7effe2ffaef86378ab2f30fc3c1",
+            "H_segment_results.csv:md5,090fdf0ee5bca32353ddf86756950586",
+            "N_segment_results.csv:md5,4b32eebf137a8393fe135248b34c3cb5"
+        ],
+        "timestamp": "2026-06-03T12:26:06.584411",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.3"
+        }
+    },
+    "versions_no_ha_na": {
+        "content": [
+            [
+                "versions.yml:md5,e8984a1953641ec191f258ed67705e30"
+            ]
+        ],
+        "timestamp": "2026-06-03T12:26:01.459113",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.3"
+        }
+    },
+    "versions_contaminated": {
+        "content": [
+            [
+                "versions.yml:md5,e8984a1953641ec191f258ed67705e30"
+            ]
+        ],
+        "timestamp": "2026-06-03T12:26:06.575291",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.3"
+        }
+    }
+}
